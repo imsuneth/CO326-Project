@@ -1,4 +1,4 @@
-int vehicle_count[2];
+int vehicle_count[]={0,0};
 int reedPins[] = {16, 5, 4, 0, 2, 14};
 int prev_reading[4];
 void pin_setup() {
@@ -9,7 +9,7 @@ void pin_setup() {
     pinMode(reedPins[i], INPUT);
   }
   for (i = 0; i < 4; i++) {
-    prev_reading[i]=LOW;
+    prev_reading[i] = LOW;
   }
 
 
@@ -28,13 +28,17 @@ boolean hasVehicle(int i) {
   return ret;
 }
 
+
+//int reedPins[] = {16, 5, 4, 0, 2, 14};
 void get_count() {
-  for (int i = 0; i < 2; i++) {
-    if (hasVehicle(i)) {
-      vehicle_count[i] += 1;
-    }
-    if (hasVehicle(i + 1)) {
-      vehicle_count[i] -= 1;
-    }
+  int i = 0;
+  while (i <= 2) {
+      if (hasVehicle(i)) {
+        vehicle_count[i] += 1;
+      }
+      if (hasVehicle(i + 1)) {
+        vehicle_count[i] -= 1;
+      }
+      i=i+2;
   }
 }

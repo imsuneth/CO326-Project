@@ -3,12 +3,13 @@
 #include <PubSubClient.h>
 #include "functions.h"
 
-//char* ssid = "Night King";
-//char* password = "121212qq";
+char* ssid = "Dialog 4G wish";
+char* password = "wishez1234";
+const char* mqtt_server = "192.168.1.2";
 
-char* ssid = "Eng-Student";
-char* password = "3nG5tuDt";
-const char* mqtt_server = "10.30.15.0";
+//char* ssid = "Eng-Student";
+//char* password = "3nG5tuDt";
+//const char* mqtt_server = "10.30.15.0";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -45,9 +46,9 @@ void reconnect() {
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
-      // Wait 5 seconds before retrying
-      delay(5000);
+      Serial.println(" try again in 1 seconds");
+      // Wait 1 seconds before retrying
+      delay(1000);
     }
   }
 }
@@ -62,6 +63,8 @@ void setup() {
   //client.setCallback(callback);
 }
 
+int prev_lane_0 = vehicle_count[0];
+int prev_lane_1 = vehicle_count[2];
 void loop() {
 
   if (!client.connected()) {
@@ -69,12 +72,23 @@ void loop() {
   }
   client.loop();
   get_count();
-  //Serial.println(vehicle_count[0],vehicle_count[1]);
-  publish_to_broker(0, 0, vehicle_count[0]);
-  publish_to_broker(0, 1, vehicle_count[1]);
- 
-  Serial.println("Published");
 
+  if (vehicle_count[0] != prev_lane_0) {
+    //publish_to_broker(0, 0, prev_lane_0); //change
+   
+    prev_lane_0 = vehicle_count[0];
+    make_non_zero_0(0, prev_lane_0); //change new
+    Serial.printf("Published from lane_0, count= %d \n", prev_lane_0);
+  }
+  if (vehicle_count[2] != prev_lane_1) {
+    //publish_to_broker(1, 1, vehicle_count[2]); //change
+
+    prev_lane_1 = vehicle_count[2];
+    make_non_zero_1(0, prev_lane_1); //change new
+    Serial.printf("Published from lane_1, count= %d \n", prev_lane_1);
+  }
+
+  //Serial.printf("lane_0 = %d, lane_1 = %d\n", vehicle_count[0], vehicle_count[2]);
 
 }
 
@@ -89,4 +103,23 @@ void publish_to_broker(int road_number, int lane_number, int count) {
   String(count).toCharArray(c, 20);
   client.publish(msg, c);
   delay(100);
+}
+
+void make_non_zero_0(int road,int count ) {
+  if (count <= 0) {
+    publish_to_broker(road, 0, 0);
+    vehicle_count[0]=0;
+  } else {
+    publish_to_broker(road, 0, count);
+  }
+}
+
+
+void make_non_zero_1(int road, int count ) {
+  if (count <= 0) {
+    publish_to_broker(road, 1, 0);
+    vehicle_count[2]=0;
+  } else {
+    publish_to_broker(road, 1, count);
+  }
 }
