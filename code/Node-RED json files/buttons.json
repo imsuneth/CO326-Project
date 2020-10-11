@@ -1,0 +1,254 @@
+[
+    {
+        "id": "53313dc5.c0ec64",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "38c052e9.75bbee",
+        "type": "mqtt out",
+        "z": "53313dc5.c0ec64",
+        "name": "TimeBase",
+        "topic": "main/timebased",
+        "qos": "",
+        "retain": "",
+        "broker": "3afd78a9.b52478",
+        "x": 520,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "9a6a4553.cbc328",
+        "type": "mqtt out",
+        "z": "53313dc5.c0ec64",
+        "name": "Algorithm",
+        "topic": "main/algorithm",
+        "qos": "",
+        "retain": "",
+        "broker": "3afd78a9.b52478",
+        "x": 520,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d15b14e8.114938",
+        "type": "mqtt out",
+        "z": "53313dc5.c0ec64",
+        "name": "Maintainance",
+        "topic": "main/maintainance",
+        "qos": "",
+        "retain": "",
+        "broker": "3afd78a9.b52478",
+        "x": 530,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5a8eaac0.52a264",
+        "type": "ui_button",
+        "z": "53313dc5.c0ec64",
+        "name": "Maint",
+        "group": "b6da9c7f.5c41b",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Maintainance",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "red",
+        "icon": "",
+        "payload": "maintainance",
+        "payloadType": "str",
+        "topic": "main",
+        "x": 290,
+        "y": 240,
+        "wires": [
+            [
+                "d15b14e8.114938",
+                "578c5bcb.75ffd4"
+            ]
+        ]
+    },
+    {
+        "id": "c0126099.4681",
+        "type": "ui_button",
+        "z": "53313dc5.c0ec64",
+        "name": "",
+        "group": "885c16bc.b91b68",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Algorithm",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "blue",
+        "icon": "",
+        "payload": "algorithm",
+        "payloadType": "str",
+        "topic": "main",
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "9a6a4553.cbc328",
+                "7978af0f.4f419"
+            ]
+        ]
+    },
+    {
+        "id": "bfc84c4a.e9cdd",
+        "type": "ui_button",
+        "z": "53313dc5.c0ec64",
+        "name": "",
+        "group": "2e0b4c28.bca8d4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "TimeBased",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "green",
+        "icon": "",
+        "payload": "timebased",
+        "payloadType": "str",
+        "topic": "main",
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "38c052e9.75bbee",
+                "978dc573.5abfd8"
+            ]
+        ]
+    },
+    {
+        "id": "578c5bcb.75ffd4",
+        "type": "ui_toast",
+        "z": "53313dc5.c0ec64",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 530,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7978af0f.4f419",
+        "type": "ui_toast",
+        "z": "53313dc5.c0ec64",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 530,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "978dc573.5abfd8",
+        "type": "ui_toast",
+        "z": "53313dc5.c0ec64",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 530,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3afd78a9.b52478",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "192.168.1.2",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "b6da9c7f.5c41b",
+        "type": "ui_group",
+        "z": "",
+        "name": "InputButton1",
+        "tab": "c9eaf330.780b8",
+        "order": 1,
+        "disp": false,
+        "width": "4",
+        "collapse": false
+    },
+    {
+        "id": "885c16bc.b91b68",
+        "type": "ui_group",
+        "z": "",
+        "name": "InputButton2",
+        "tab": "c9eaf330.780b8",
+        "order": 2,
+        "disp": false,
+        "width": "4",
+        "collapse": false
+    },
+    {
+        "id": "2e0b4c28.bca8d4",
+        "type": "ui_group",
+        "z": "",
+        "name": "InputButton3",
+        "tab": "c9eaf330.780b8",
+        "order": 3,
+        "disp": false,
+        "width": "4",
+        "collapse": false
+    },
+    {
+        "id": "c9eaf330.780b8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Traffic controlling Statics",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
